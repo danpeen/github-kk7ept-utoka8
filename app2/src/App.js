@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./button";
 
 const App = () => {
   return (
@@ -8,7 +9,8 @@ const App = () => {
       textAlign:"center",
       backgroundColor:"cyan"
     }}>
-      <h1 >App 2 7</h1>
+      <h1 >App 2</h1>
+      <Button />
     </div>
   )
 }

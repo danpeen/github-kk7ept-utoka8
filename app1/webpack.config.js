@@ -7,11 +7,13 @@ module.exports = {
   entry: "./src/index",
   mode: "development",
   devServer: {
+    hot: true,
     static: path.join(__dirname, "dist"),
-    port: 3001,
+    port: 3001
   },
   output: {
     publicPath: "auto",
+    // publicPath: 'http://localhost:3001',
   },
   module: {
     rules: [
