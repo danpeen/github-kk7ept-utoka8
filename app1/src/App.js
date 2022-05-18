@@ -1,7 +1,8 @@
 import React, {Suspense} from "react";
+import Garfish from "garfish";
 const RemoteButton = React.lazy(() => import("app2/button"));
 const RemoteApp = React.lazy(() => import("app2/App"));
-import Garfish from "garfish";
+
 
 const App = () => {
   const handleClick = async () => {
@@ -29,7 +30,7 @@ const App = () => {
         textAlign:"center",
         backgroundColor: "aquamarine",
         cursor: "pointer"
-      }}> load App 2 </button>
+      }}> Garfish.loadApp('app2') </button>
 
 
       <div id="subApp"></div>
@@ -38,10 +39,8 @@ const App = () => {
         <div style={{
         margin:"10px",
         padding:"10px",
-        // textAlign:"center",
-        // backgroundColor: "cyan"
       }}>
-          from remote module button ： <RemoteButton />
+         加载一个 Button（from remote）： <RemoteButton />
         </div>
       </Suspense>
 
@@ -51,7 +50,7 @@ const App = () => {
         padding:"10px",
 
       }}>
-          from remote module button ： <RemoteApp />
+          加载一个应用（from remote) ： <RemoteApp />
         </div>
       </Suspense>
     </div>)
