@@ -5,12 +5,15 @@ const path = require('path');
 const isDevelopment = process.env.NODE_ENV === "development";
 
 module.exports = {
-  entry: './src/index',
+  entry: {
+    main: "./src/index",
+  },
   mode: 'development',
   devServer: {
     hot: true,
     static: path.join(__dirname, 'dist'),
     port: 3002,
+    historyApiFallback: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
@@ -20,6 +23,9 @@ module.exports = {
   // optimization: {
   //   runtimeChunk: 'single'
   // },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".json", ".jsx", ".css"],
+  },
   output: {
     publicPath: 'auto',
     clean: isDevelopment ? false : true,
@@ -37,12 +43,24 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
+        test: /\.(j|t)sx?$/,
+        loader: "babel-loader",
         exclude: /node_modules/,
         options: {
-          presets: ['@babel/preset-react'],
+          presets: ["@babel/preset-react"],
         },
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.less$/i,
+        use: [
+          "style-loader",
+          "css-loader",
+          "less-loader",
+        ],
       },
     ],
   },
@@ -51,7 +69,10 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'app2',
       filename: 'remoteEntry.js',
-      library: { type: 'this', name: 'app2' },
+      remotes: {
+        app1: "app1@http://localhost:3001/sharedUtil.js",
+      },
+      // library: { type: 'this', name: 'app2' },
       exposes: {
         './App': './src/App',
         './button': './src/button',
