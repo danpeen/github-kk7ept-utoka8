@@ -5,8 +5,6 @@ import App from "./App";
 export const provider = () => ({
   // render 渲染函数，必须提供
   render: ({ dom, basename }) => {
-    console.log("----render basename", basename);
-
     // 和子应用独立运行时一样，将子应用渲染至对应的容器节点，根据不同的框架使用不同的渲染方式
     ReactDOM.render(<App basename={basename} />, dom.querySelector("#root"));
   },

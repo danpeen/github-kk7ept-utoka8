@@ -1,6 +1,4 @@
 export const add = (a, b) => {
-  console.log("-----add", a);
-
   return a + b;
 };
 
