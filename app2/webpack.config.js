@@ -4,7 +4,6 @@ const path = require('path');
 const webpack = require("webpack")
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const isDevelopment = process.env.NODE_ENV === "development";
-const WebpackRemoteTypesPlugin = require('webpack-remote-types-plugin').default;
 
 module.exports = {
   entry: {
@@ -29,7 +28,6 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js", ".json", ".jsx", ".css"],
   },
   output: {
-
     clean: isDevelopment ? false : true,
     filename: '[name].[contenthash].js',
     chunkFilename: '[name].[contenthash].js',
@@ -72,15 +70,14 @@ module.exports = {
       name: 'app2',
       filename: 'remoteEntry.js',
       remotes: {
-        app1: "app1@http://localhost:3001/sharedUtil.js",
+        app1: "app1@http://localhost:3001/remoteEntry.js",
         app3: "app3@http://localhost:3003/remoteEntry.js",
       },
-      // library: { type: 'this', name: 'app2' },
       exposes: {
         './App': './src/App.tsx',
         './button': './src/button.tsx',
       },
-      shared: { react: { singleton: true }, 'react-dom': { singleton: true }},
+      // shared: { react: { singleton: true }, 'react-dom': { singleton: true }},
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',

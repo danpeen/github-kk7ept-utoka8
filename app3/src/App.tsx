@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import add, { sayHello } from "app1/shared-utils";
+import Button from "app2/button";
 import { Com1 } from "app1/shared-components";
 import "./index.less";
 
@@ -29,6 +30,12 @@ const App = ({ basename }) => {
           </div>
           <br />
         </div>
+
+        <div className="remote-element">
+          来自 Sub APP2 的 Button: <Button />
+          <br />
+        </div>
+
         <ul>
           <li>
             <NavLink to="/home">Home</NavLink>

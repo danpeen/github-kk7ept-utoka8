@@ -6,6 +6,5 @@ declare global {
     __REACT_DEVTOOLS_GLOBAL_HOOK__: any;
     app1Url: string;
     app2Url: string;
-    libsUrl: string;
   }
 }

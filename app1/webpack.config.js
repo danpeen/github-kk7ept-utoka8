@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
 const ExternalTemplateRemotesPlugin = require("external-remotes-plugin");
 const deps = require('./package.json').dependencies;
+const webpack = require("webpack")
 // const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { CachedInputFileSystem, ResolverFactory } = require("enhanced-resolve")
 const fs = require('fs');
@@ -83,10 +84,11 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       name: "app1",
-      filename: 'sharedUtil.js',
-      remotes: {
-        app2: "app2@[app2Url]/remoteEntry.js",
-      },
+      filename: 'remoteEntry.js',
+      // remotes: {
+      //   app2: "app2@http://localhost:3002/remoteEntry.js",
+      //   app3: "app3@http://localhost:3003/remoteEntry.js",
+      // },
       exposes: {
         './react': myResolver.resolveSync({}, process.cwd(), "react"),
         './react-dom': myResolver.resolveSync({}, process.cwd(), "react-dom"),
@@ -95,16 +97,15 @@ module.exports = {
         './shared-components': './src/shared-components.tsx',
         './shared-store': './src/store.ts',
       },
-      shared: {
-        react: { singleton: true, requiredVersion: deps.react},
-       'react-dom': { singleton: true, requiredVersion: deps['react-dom']}
-     },
+      // shared: {
+      //   react: { singleton: true, requiredVersion: deps.react  },
+      //   'react-dom': { singleton: true, requiredVersion: deps['react-dom'] }
+      // }
     }),
-
     new ExternalTemplateRemotesPlugin(),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
-    }),
+    })
     // new ReactRefreshWebpackPlugin()
   ],
 };

@@ -28,7 +28,6 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js", ".json", ".jsx", ".css"],
   },
   output: {
-    // publicPath: 'auto',
     clean: isDevelopment ? false : true,
     filename: '[name].[contenthash].js',
     chunkFilename: '[name].[contenthash].js',
@@ -87,12 +86,13 @@ module.exports = {
       name: 'app3',
       filename: 'remoteEntry.js',
       remotes: {
-        app1: "app1@http://localhost:3001/sharedUtil.js",
+        app1: "app1@http://localhost:3001/remoteEntry.js",
+        app2: "app2@http://localhost:3002/remoteEntry.js",
       },
       exposes: {
         './shared-button': './src/button.tsx',
       },
-      shared: { react: { singleton: true }, 'react-dom': { singleton: true }},
+      // shared: { react: { singleton: true }, 'react-dom': { singleton: true}},
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
@@ -111,6 +111,6 @@ module.exports = {
       if (resource.request === 'react-router-dom') {
         resource.request = 'app1/react-router-dom';
       }
-    }))
+    })),
   ],
 };

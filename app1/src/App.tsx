@@ -13,15 +13,19 @@ import "./index.less";
 const PageNotFound = () => <h2>404...</h2>;
 const MainHome = () => {
   return (
-    <div>
-      <h2> Hello, world! </h2>
-      <h2> This is a demo project with Garfish using Module federation.</h2>
+    <div className="home">
+      <h2> welcome, </h2>
+      <h2>
+        Hello, This is a demo mirco frontend projects using Garfish and share
+        components with Module federation.
+      </h2>
     </div>
   );
 };
 const SubAPP = () => <div id="subApp"> </div>;
 
-// const RemoteButton = React.lazy(() => import("app2/button"));
+// const RemoteButtonFromApp2 = React.lazy(() => import("app2/button"));
+// const RemoteButtonFromApp3 = React.lazy(() => import("app3/shared-button"));
 // const RemoteApp = React.lazy(() => import("app2/App"));
 
 const Home = () => {
@@ -42,7 +46,10 @@ const Home = () => {
 
         {/* <Suspense fallback={"button loading..."}>
           <div className="remote-element">
-            Remote Button(sub-app)： <RemoteButton />
+            Remote Button from sub-app-2： <RemoteButtonFromApp2 />
+          </div>
+          <div className="remote-element">
+            Remote Button from sub-app-3： <RemoteButtonFromApp3 />
           </div>
         </Suspense> */}
 
