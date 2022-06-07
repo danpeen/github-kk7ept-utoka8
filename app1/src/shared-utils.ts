@@ -1,4 +1,4 @@
-export const add = (a, b) => {
+export const add = (a: number, b: number) => {
   return a + b;
 };
 

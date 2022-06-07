@@ -1,10 +1,14 @@
+#root {
+  background: wheat;
+  height: 100vh;
+}
 .main-app {
   display: flex;
   .title {
     margin: 10px;
     padding: 10px;
     text-align: center;
-    background-color: aquamarine;
+    // background-color: aquamarine;
     cursor: pointer;
   }
 
@@ -17,11 +21,28 @@
     cursor: pointer;
   }
 
-  .remote-element {
-    background: cornflowerblue;
-    padding: 20px;
-    border-radius: 20px;
-    color: #fff;
-    margin-bottom: 16px;
+  li {
+    a {
+      color: blue;
+    }
   }
+
+  .right {
+    width: 80%;
+  }
+}
+.remote-element {
+  background: cornflowerblue;
+  padding: 20px;
+  border-radius: 20px;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.com1 {
+  background: aquamarine;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 10px;
+  color: burlywood;
 }
