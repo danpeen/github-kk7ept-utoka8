@@ -16,8 +16,8 @@ const MainHome = () => {
     <div className="home">
       <h2> welcome, </h2>
       <h2>
-        Hello, This is a demo mirco frontend projects using Garfish and share
-        components with Module federation.
+        Hello, This is a demo mirco frontend projects using Garfish with Module
+        federation.
       </h2>
     </div>
   );

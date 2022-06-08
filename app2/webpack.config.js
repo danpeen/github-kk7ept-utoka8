@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require("webpack")
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const isDevelopment = process.env.NODE_ENV === "development";
+const websocketPath = `ws://localhost:3002/ws`;
 
 module.exports = {
   entry: {
@@ -81,9 +82,16 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      chunks: ['main']
     }),
-    new ReactRefreshWebpackPlugin(),
-
+    // new AddEntryAttributeWebpackPlugin((src => {
+    //   return !!(src.match(/main\.(.*)\.js$/) || src.match('main.js'));
+    // })),
+    new ReactRefreshWebpackPlugin({
+      overlay: {
+        sockPath: websocketPath,
+      },
+    }),
     // 只是拿 react 举个例子，第二个回调函数参数应该由用户传来的配置进行封装
     new webpack.NormalModuleReplacementPlugin(/(.*)/, ((resource) => {
       // 如果请求的 resource 是 react，则指向 app1/react

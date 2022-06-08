@@ -1,7 +1,7 @@
 // You can write your own logic here to determine the actual url
 window.app2Url = "http://localhost:3002";
-
 import Garfish from "garfish";
+
 Garfish.run({
   basename: "/",
   domGetter: "#subApp",

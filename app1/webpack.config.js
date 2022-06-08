@@ -3,10 +3,11 @@ const { ModuleFederationPlugin } = require("webpack").container;
 const ExternalTemplateRemotesPlugin = require("external-remotes-plugin");
 const deps = require('./package.json').dependencies;
 const webpack = require("webpack")
-// const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { CachedInputFileSystem, ResolverFactory } = require("enhanced-resolve")
 const fs = require('fs');
 const path = require("path");
+
 const myResolver = ResolverFactory.createResolver({
   fileSystem: new CachedInputFileSystem(fs, 4000),
   conditionNames: ['node'],
@@ -102,11 +103,12 @@ module.exports = {
       //   'react-dom': { singleton: true, requiredVersion: deps['react-dom'] }
       // }
     }),
-    new ExternalTemplateRemotesPlugin(),
+    new ExternalTemplateRemotesPlugin( ),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
-    })
-    // new ReactRefreshWebpackPlugin()
+      chunks: ['main']
+    }),
+    new ReactRefreshWebpackPlugin()
   ],
 };
 

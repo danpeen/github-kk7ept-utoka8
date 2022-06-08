@@ -4,6 +4,7 @@ import App from "./App";
 import { store } from "app1/shared-store";
 import { injectIntoGlobalHook } from "react-refresh/cjs/react-refresh-runtime.development";
 
+// 需要重新注入 ReactDOM, 否则热更新不会生效
 export const injectBaseReactRefresh = () => {
   // Injects the react refresh replacing the one from the base app
   injectIntoGlobalHook(window);

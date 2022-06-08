@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require("webpack")
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const isDevelopment = process.env.NODE_ENV === "development";
+const websocketPath = `ws://localhost:3003/ws`;
 
 module.exports = {
   entry: {
@@ -62,22 +63,6 @@ module.exports = {
           "less-loader",
         ],
       },
-      {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'dts-loader',
-            options: {
-              name: 'app', // The name configured in ModuleFederationPlugin
-              exposes: { // The exposes configured in ModuleFederationPlugin
-                './shared-button': './src/button.tsx',
-              },
-              typesOutputDir: '.wp_federation' // Optional, default is '.wp_federation'
-            },
-          },
-        ],
-      },
     ],
   },
   plugins: [
@@ -87,18 +72,22 @@ module.exports = {
       filename: 'remoteEntry.js',
       remotes: {
         app1: "app1@http://localhost:3001/remoteEntry.js",
-        app2: "app2@http://localhost:3002/remoteEntry.js",
+        // app2: "app2@http://localhost:3002/remoteEntry.js",
       },
       exposes: {
         './shared-button': './src/button.tsx',
       },
-      // shared: { react: { singleton: true }, 'react-dom': { singleton: true}},
+      // shared: { react: { singleton: true }, 'react-dom': { singleton: true }},
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      chunks: ['main']
     }),
-    new ReactRefreshWebpackPlugin(),
-
+    new ReactRefreshWebpackPlugin({
+      overlay: {
+        sockPath: websocketPath,
+      },
+    }),
     // 只是拿 react 举个例子，第二个回调函数参数应该由用户传来的配置进行封装
     new webpack.NormalModuleReplacementPlugin(/(.*)/, ((resource) => {
       // 如果请求的 resource 是 react，则指向 app1/react
@@ -111,6 +100,6 @@ module.exports = {
       if (resource.request === 'react-router-dom') {
         resource.request = 'app1/react-router-dom';
       }
-    })),
+    }))
   ],
 };
