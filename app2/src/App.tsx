@@ -11,7 +11,7 @@ const App = ({ basename }) => {
     <BrowserRouter basename={basename || ""}>
       <div className="sub-app">
         <div className="title">
-          <h1> Sub App 2</h1>
+          <h1> Sub App 2 </h1>
         </div>
         <div className="remote-element">
           <div> 来自基座的共享方法 add 方法：add(1, 2): {add(1, 2)}</div>

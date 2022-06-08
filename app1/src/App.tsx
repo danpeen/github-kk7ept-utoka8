@@ -19,6 +19,9 @@ const MainHome = () => {
         Hello, This is a demo mirco frontend projects using Garfish with Module
         federation.
       </h2>
+      <h4> 1、click `Sub-APP-2`, Garfish will load Sub-APP-2</h4>
+      <h4> 2、click `Sub-APP-3`, Garfish will load Sub-APP-3</h4>
+      <h4> 3、Sub-APP-2：</h4>
     </div>
   );
 };

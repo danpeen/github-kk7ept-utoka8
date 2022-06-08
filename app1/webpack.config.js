@@ -98,14 +98,16 @@ module.exports = {
         './shared-components': './src/shared-components.tsx',
         './shared-store': './src/store.ts',
       },
-      // shared: {
-      //   react: { singleton: true, requiredVersion: deps.react  },
-      //   'react-dom': { singleton: true, requiredVersion: deps['react-dom'] }
-      // }
+      shared: {
+        react: { singleton: true, requiredVersion: deps.react  },
+        'react-dom': { singleton: true, requiredVersion: deps['react-dom'] },
+        'react-router-dom': { singleton: true, requiredVersion: deps['react-router-dom'] }
+      }
     }),
     new ExternalTemplateRemotesPlugin( ),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
+      // mark sure HRM works fine. check: https://github.com/module-federation/module-federation-examples/issues/358
       chunks: ['main']
     }),
     new ReactRefreshWebpackPlugin()

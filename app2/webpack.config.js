@@ -4,7 +4,7 @@ const path = require('path');
 const webpack = require("webpack")
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const isDevelopment = process.env.NODE_ENV === "development";
-const websocketPath = `ws://localhost:3002/ws`;
+const deps = require('./package.json').dependencies;
 
 module.exports = {
   entry: {
@@ -78,20 +78,19 @@ module.exports = {
         './App': './src/App.tsx',
         './button': './src/button.tsx',
       },
-      // shared: { react: { singleton: true }, 'react-dom': { singleton: true }},
+      // shared: { react: { singleton: true }, 'react-dom': { singleton: true }, 'react-router-dom': { singleton: true }},
+      shared: {
+        react: { singleton: true, requiredVersion: deps.react  },
+        'react-dom': { singleton: true, requiredVersion: deps['react-dom'] },
+        'react-router-dom': { singleton: true, requiredVersion: deps['react-router-dom'] }
+      }
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      // mark sure HRM works fine. check: https://github.com/module-federation/module-federation-examples/issues/358
       chunks: ['main']
     }),
-    // new AddEntryAttributeWebpackPlugin((src => {
-    //   return !!(src.match(/main\.(.*)\.js$/) || src.match('main.js'));
-    // })),
-    new ReactRefreshWebpackPlugin({
-      overlay: {
-        sockPath: websocketPath,
-      },
-    }),
+    new ReactRefreshWebpackPlugin(),
     // 只是拿 react 举个例子，第二个回调函数参数应该由用户传来的配置进行封装
     new webpack.NormalModuleReplacementPlugin(/(.*)/, ((resource) => {
       // 如果请求的 resource 是 react，则指向 app1/react
