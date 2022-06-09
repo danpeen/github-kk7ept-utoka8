@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+
 import App from "./App";
 import { store } from "app1/shared-store";
 import { injectIntoGlobalHook } from "react-refresh/cjs/react-refresh-runtime.development";
@@ -21,7 +23,9 @@ export const provider = () => ({
   render: ({ dom, basename }) => {
     // 和子应用独立运行时一样，将子应用渲染至对应的容器节点，根据不同的框架使用不同的渲染方式
     ReactDOM.render(
-      <App basename={basename} store={store} />,
+      <BrowserRouter basename={basename || ""}>
+        <App basename={basename} store={store} />
+      </BrowserRouter>,
       dom.querySelector("#root")
     );
   },

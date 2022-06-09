@@ -27,9 +27,9 @@ module.exports = {
     port: 3001,
     historyApiFallback: true,
   },
-  // optimization: {
-  //   runtimeChunk: 'single'
-  // },
+  optimization: {
+    runtimeChunk: 'single'
+  },
   output: {
     clean: true,
     // 保证子应用的资源路径变为绝对路径, 注意带上尾部的 '/'
@@ -86,10 +86,10 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "app1",
       filename: 'remoteEntry.js',
-      // remotes: {
-      //   app2: "app2@http://localhost:3002/remoteEntry.js",
-      //   app3: "app3@http://localhost:3003/remoteEntry.js",
-      // },
+      remotes: {
+        app2: "app2@http://localhost:3002/remoteEntry.js",
+        app3: "app3@http://localhost:3003/remoteEntry.js",
+      },
       exposes: {
         './react': myResolver.resolveSync({}, process.cwd(), "react"),
         './react-dom': myResolver.resolveSync({}, process.cwd(), "react-dom"),

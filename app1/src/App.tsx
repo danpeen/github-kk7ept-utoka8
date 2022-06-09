@@ -57,9 +57,9 @@ const MainHome = () => {
 };
 const SubAPP = () => <div id="subApp"> </div>;
 
-// const RemoteButtonFromApp2 = React.lazy(() => import("app2/button"));
-// const RemoteButtonFromApp3 = React.lazy(() => import("app3/shared-button"));
-// const RemoteApp = React.lazy(() => import("app2/App"));
+const RemoteButtonFromApp2 = React.lazy(() => import("app2/button"));
+const RemoteButtonFromApp3 = React.lazy(() => import("app3/shared-button"));
+const RemoteApp = React.lazy(() => import("app2/App"));
 
 const Home = () => {
   const navigate = useNavigate();
@@ -77,20 +77,20 @@ const Home = () => {
           <h1 className="logo"> Main App </h1>
         </div>
 
-        {/* <Suspense fallback={"button loading..."}>
+        <Suspense fallback={"button loading..."}>
           <div className="remote-element">
             Remote Button from sub-app-2： <RemoteButtonFromApp2 />
           </div>
           <div className="remote-element">
             Remote Button from sub-app-3： <RemoteButtonFromApp3 />
           </div>
-        </Suspense> */}
+        </Suspense>
 
-        {/* <Suspense fallback={"App2 loading..."}>
+        <Suspense fallback={"App2 loading..."}>
           <div className="remote-element">
             Remote Application(sub-app)： <RemoteApp />
           </div>
-        </Suspense> */}
+        </Suspense>
 
         <ul>
           <li>
