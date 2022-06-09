@@ -31,18 +31,21 @@ The exposed components are used in Host.
 ### Main App's feature:
   -  1) An Micro frontend app with Garfish;
   -  2) Load Sub App when browser router changed,which Garfish will load the sub app according to `activeWhen` param;
-  -  3) share the common libraries for sub APPs;
-  -  4) expose common common utils func and components for sub APPs;
-  -  5) support hmr in devServer (by react-fast-refresh);
+  -  3) show the exposed component from Sub-App-2 and Sub-App-3;
+  -  4) share the common libraries for sub APPs;
+  -  5) expose common common utils func and components for sub APPs;
+  -  6) hmr works fine in devServer (by react-fast-refresh);
 
 ### Sub-APP-2's feature:
   - 1) share common utils func and components from main-App;
   - 2) show the exposed component from Sub-App-3;
-  - 3) support hmr in devServer (by react-fast-refresh);
+  - 3) hmr works fine in devServer (by react-fast-refresh);
   - 4) share the common libraries from main App.(such as React、React-dom、React-router-dom); [check the `Network` in console panel]
 
 ### Sub-APP-3's feature:
   - 1) share common utils func and components from main-App;
-  - 2) support hmr in devServer (by react-fast-refresh);
-  - 3) share the common libraries from main App.(such as React、React-dom、React-router-dom); [check the `Network` in console panel]
-  - 4) it has own independent routes, which can test whether the sub-app routes is normal in Garfish;
+  - 2) show the exposed component from Sub-App-2; (click `about` link and you will see this component.)
+  - 3) hmr works fine in devServer (by react-fast-refresh);
+  - 4) share the common libraries from main App.(such as React、React-dom、React-router-dom); [check the `Network` in console panel]
+  - 5) it has own independent routes, which can test whether the sub-app routes is normal in Garfish;
+  - 6) load remote component async when router changed to `about`.

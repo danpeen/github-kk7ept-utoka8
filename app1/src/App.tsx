@@ -8,14 +8,14 @@ import {
   Outlet,
 } from "react-router-dom";
 import "./index.less";
-import { MainHome } from "./Home";
+import { Home } from "./Home";
 const PageNotFound = () => <h2>404...</h2>;
 const SubAPP = () => <div id="subApp"> </div>;
 const RemoteButtonFromApp2 = React.lazy(() => import("app2/button"));
 const RemoteButtonFromApp3 = React.lazy(() => import("app3/shared-button"));
 const RemoteApp = React.lazy(() => import("app2/App"));
 
-const Home = () => {
+const App = () => {
   const navigate = useNavigate();
 
   // const handleClick = async () => {
@@ -66,9 +66,9 @@ const Index = () => {
     <Suspense fallback={null}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}>
-            <Route path="/" element={<MainHome />} />
-            <Route path="/home" element={<MainHome />} />
+          <Route path="/" element={<App />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/app2/*" element={<SubAPP />} />
             <Route path="/app3/*" element={<SubAPP />} />
             <Route path="*" element={<PageNotFound />} />

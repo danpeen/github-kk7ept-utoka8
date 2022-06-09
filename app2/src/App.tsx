@@ -12,7 +12,7 @@ const App = ({ basename }) => {
         <h1> Sub App 2 </h1>
       </div>
       <div className="remote-element">
-        <div> 来自基座的共享方法 add 方法：add(1, 2): {add(1, 2)}</div>
+        <div>来自基座的共享方法 add 方法：add(1, 2): {add(1, 2)}</div>
         <div>
           来自基座组件: <Com1 name="danpeen" age={12} />
         </div>

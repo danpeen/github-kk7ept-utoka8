@@ -1,1 +1,1 @@
-export declare const MainHome: () => any;
+export declare const Home: () => any;

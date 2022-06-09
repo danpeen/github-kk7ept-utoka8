@@ -24,7 +24,7 @@
     "isolatedModules": false,
     "noEmit": true,
     "experimentalDecorators": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "downlevelIteration": true
   },
   "include": [
