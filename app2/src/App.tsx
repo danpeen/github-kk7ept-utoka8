@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
 import add, { sayHello } from "app1/shared-utils";
 import { Com1 } from "app1/shared-components";
 import Button from "app3/shared-button";

@@ -1,7 +1,7 @@
 import React from "react";
 
 const Button = () => {
-  return <button className="button"> Sub-App-3-button </button>;
+  return <button className="button"> Button from App3 </button>;
 };
 
 export default Button;

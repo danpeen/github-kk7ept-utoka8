@@ -1,5 +1,4 @@
-import React, { useState, useEffect, Suspense } from "react";
-// import Garfish from "garfish";
+import React, { Suspense } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -9,54 +8,9 @@ import {
   Outlet,
 } from "react-router-dom";
 import "./index.less";
-
+import { MainHome } from "./Home";
 const PageNotFound = () => <h2>404...</h2>;
-const MainHome = () => {
-  return (
-    <div className="home">
-      <h2> welcome, </h2>
-      <h3>
-        This is a demo mirco frontend projects using Garfish with Module
-        federation.
-      </h3>
-      <h4> 1、click `Sub-APP-2`, Garfish will load Sub-APP-2</h4>
-      <h4> 2、click `Sub-APP-3`, Garfish will load Sub-APP-3</h4>
-
-      <h4 className="block">
-        3、Main App's feature: <br />
-        1) An Micro frontend app with Garfish; <br />
-        2) Load Sub App when browser router changed,which Garfish will load the
-        sub app according to `activeWhen` param; <br />
-        3) share the common libraries for sub APPs; <br />
-        4) expose common common utils func and components for sub APPs; <br />
-        5) support hmr in devServer (by react-fast-refresh); <br />
-      </h4>
-
-      <h4 className="block">
-        3、Sub-APP-2's feature: <br />
-        1) share common utils func and components from main-App; <br />
-        2) show the exposed component from Sub-App-3; <br />
-        3) support hmr in devServer (by react-fast-refresh); <br />
-        4) share the common libraries from main App.(such as
-        React、React-dom、React-router-dom); [check the `Network` in console
-        panel] <br />
-      </h4>
-
-      <h4 className="block">
-        3、Sub-APP-3's feature: <br />
-        1) share common utils func and components from main-App; <br />
-        2) support hmr in devServer (by react-fast-refresh); <br />
-        3) share the common libraries from main App.(such as
-        React、React-dom、React-router-dom); [check the `Network` in console
-        panel] <br />
-        4) it has own independent routes, which can test whether the sub-app
-        routes is normal in Garfish;
-      </h4>
-    </div>
-  );
-};
 const SubAPP = () => <div id="subApp"> </div>;
-
 const RemoteButtonFromApp2 = React.lazy(() => import("app2/button"));
 const RemoteButtonFromApp3 = React.lazy(() => import("app3/shared-button"));
 const RemoteApp = React.lazy(() => import("app2/App"));
@@ -76,7 +30,14 @@ const Home = () => {
         <div className="title" onClick={() => navigate({ pathname: "/home" })}>
           <h1 className="logo"> Main App </h1>
         </div>
-
+        <ul>
+          <li>
+            <NavLink to="/app2">Sub-APP-2</NavLink>
+          </li>
+          <li>
+            <NavLink to="/app3">Sub-APP-3</NavLink>
+          </li>
+        </ul>
         <Suspense fallback={"button loading..."}>
           <div className="remote-element">
             Remote Button from sub-app-2： <RemoteButtonFromApp2 />
@@ -86,40 +47,14 @@ const Home = () => {
           </div>
         </Suspense>
 
-        <Suspense fallback={"App2 loading..."}>
+        {/* <Suspense fallback={"App2 loading..."}>
           <div className="remote-element">
             Remote Application(sub-app)： <RemoteApp />
           </div>
-        </Suspense>
-
-        <ul>
-          <li>
-            <NavLink to="/app2">Sub-APP-2</NavLink>
-          </li>
-          <li>
-            <NavLink to="/app3">Sub-APP-3</NavLink>
-          </li>
-        </ul>
+        </Suspense> */}
       </div>
 
       <div className="right">
-        {/* <button onClick={handleClick} className="button">
-          Garfish.loadApp('app2')
-        </button> */}
-
-        {/* <button
-          onClick={() => navigate({ pathname: "/app2" })}
-          className="button"
-        >
-          Router based load Sub APP 2
-        </button>
-        <button
-          onClick={() => navigate({ pathname: "/app3" })}
-          className="button"
-        >
-          Router based load Sub APP 3
-        </button> */}
-
         <Outlet></Outlet>
       </div>
     </div>

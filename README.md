@@ -9,8 +9,9 @@ npm install
 npm start
 ```
 
-Host(app1) runs at http://localhost:3001 (live reload only)
-Remote(app2) at http://localhost:3002
+Host(main-app) runs at http://localhost:3001 (live reload only)
+Remote(sub-app-2) at http://localhost:3002
+Remote(sub-app-3)) at http://localhost:3003
 
 ## How it works
 

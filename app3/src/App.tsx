@@ -1,17 +1,21 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import add, { sayHello } from "app1/shared-utils";
-// import Button from "app2/button";
 import { Com1 } from "app1/shared-components";
 import MyButton from "./button";
+import About from "./About";
+
 import "./index.less";
 
 const Index = () => {
-  return <h1>Home page</h1>;
-};
-
-const About = () => {
-  return <h1>About page</h1>;
+  return (
+    <div>
+      <h1>Home page</h1>
+      <div className="remote-element">
+        My Button: <MyButton />
+      </div>
+    </div>
+  );
 };
 
 const App = ({ basename }) => {
@@ -25,16 +29,8 @@ const App = ({ basename }) => {
         <div className="remote-element">
           <div> 来自基座的 add 方法：add(1, 2): {add(1, 2)}</div>
           <div>
-            来自基座组件: <Com1 name="hello zhangsan" age={18} />
+            来自基座的组件: <Com1 name="hello zhangsan" age={18} />
           </div>
-        </div>
-
-        {/* <div className="remote-element">
-          来自 Sub APP2 的 Button: <Button />
-        </div> */}
-
-        <div className="remote-element">
-          My Button: <MyButton />
         </div>
 
         <ul>
